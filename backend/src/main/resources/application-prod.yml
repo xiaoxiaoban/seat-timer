@@ -1,0 +1,58 @@
+server:
+  port: 9991
+  servlet:
+    context-path: /api
+jasypt:
+  encryptor:
+    password:
+spring:
+  application:
+    name: backend
+
+  # 数据源配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/seat_timer_db?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: ENC(xzksRIHk7uu2wZ58igoVezdpp0aFt66O29RDMVIwYGXo0ldWkmYuqjrVHCGWWKJt)
+    password: ENC(qkP2nUPu7i7DRNt0ILILRicw04bjzs09tSpViJGos1iEIuFQJo4NN0AzIFugS2OU)
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 20
+      idle-timeout: 300000
+      max-lifetime: 1200000
+      connection-timeout: 20000
+
+  # JPA配置
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  # Redis配置
+  redis:
+    host: localhost
+    port: 6379
+    password:
+    database: 0
+    timeout: 3000ms
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1ms
+
+# 日志配置
+logging:
+  level:
+    root: WARN
+    com.example.backend: WARN
+    org.springframework.web: WARN
+    org.hibernate.SQL: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
